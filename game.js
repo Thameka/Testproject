@@ -3,25 +3,23 @@ var gameScreen
 var choiceBox
 var nextBox
 
-
 window.onload = () => {
-startScreen = document.getElementById("startScreen");
-gameScreen = document.getElementById("gameScreen");
-choiceBox = document.getElementById("choiceBox");
-nextBox = document.getElementById("nextBox");
-gameScreen.hidden = true;
-choiceBox.hidden = true;
-nextBox.hidden = true;
+    startScreen = document.getElementById("startScreen");
+    gameScreen = document.getElementById("gameScreen");
+    choiceBox = document.getElementById("choiceBox");
+    nextBox = document.getElementById("nextBox");
+    gameScreen.style.display = "none";
+    choiceBox.style.display = "none";
+    nextBox.style.display = "none";
 }
 
 function startGame() {
-    debugger;
-    startScreen.hidden = true;
-    gameScreen.hidden = false;
-    nextBox.hidden = false;
+    startScreen.style.display = "none";
+    gameScreen.style.display = "block";
+    nextBox.style.display = "block";
 }
 
 function NBoff() {
-    nextBox.hidden= true;
-    choiceBox.hidden= false;
+    nextBox.style.display=  "none";
+    choiceBox.style.display= "block";
 }
