@@ -10,19 +10,21 @@
 
 <body>
     <div id="startScreen">
-        <h1 style="margin-top: 3%; margin-left: 10%; font-size: 2em;">TITRE DU PROJET</h1>
-
-        <div style="display:flex; flex-direction: row; justify-items:stretch; justify-content: space-evenly; margin-left: 6%; height:15%; width:60%">
-            <button style="font-size: 1em; " onclick="startGame()">Start game</button>
-            <button style="font-size: 1em; ">Load game</button>
-            <button style="font-size: 1em; ">Squeek!</button>
-        </div>
-        <div id="optionsContainer" class="flex-container1">
-            <div>Text Speed</div>
-            <input class="custom-slider" id="textSpeed" type="range" min="0" max="30" step="1" value="15" style="width: 70%; margin: 3%"/>
-            <div>Volume</div>
-            <input class="custom-slider" id="volume" type="range" min="0" max="10" value="10" style="width: 70%; margin:3%;"/>
-        </div>
+        <div style ="height:90vh; width:90vh; position: absolute; left:2%; top:1%; padding: 1%">
+        <h1 style="margin-top: 3%; margin-left: 2%; font-size: 2em;">TITRE DU PROJET</h1>
+        
+             <div style="display:flex; flex-direction: row; justify-items:stretch; justify-content: space-between; margin-left: 2%; height:10%; width:90%">
+               <button style="font-size: 1em; " onclick="startGame()">Start game</button>
+               <button style="font-size: 1em; ">Load game</button>
+                <button style="font-size: 1em; ">Squeek!</button>
+             </div>
+             <div id="optionsContainer" class="flex-container1">
+                <div>Text Speed</div>
+                     <input class="custom-slider" id="textSpeed" type="range" min="0" max="30" step="1" value="15" style="width: 70%; margin: 3%"/>
+                <div>Volume</div>
+                      <input class="custom-slider" id="volume" type="range" min="0" max="10" value="10" style="width: 70%; margin:3%;"/>
+             </div>
+         </div>
     </div>
 
     <div id="gameScreen">
@@ -30,22 +32,22 @@
         <div id="characterSprite">
             <img id="imgCharacterSprite" class="imgCS" src="sprites/placeholder.png"/>
         </div>
-        <div id="nameBox" class="nb-container">Placeholder</div>
+        <div id="nameBox" class="nb-container">Lorem Ipsum</div>
 
         <div id="mainBox"></div>    
         <div id="textBox">
-            All of a sudden, everything went black. The ship was shook from the core and the sound of wood cracking could be heard from all directions. You were thrown from left to right, and your whole body was aching from the impacts. What would become of you and your shipmates ?
+            Aliquam erat volutpat. Nunc aliquam id nisi a consectetur. Quisque vehicula orci eros, nec pulvinar tellus posuere ut. Nunc ut ipsum sodales, aliquet nulla sit amet, maximus justo. Maecenas eu varius velit, vel ultricies arcu. Donec aliquet massa libero, sed dignissim libero bibendum quis. Proin molestie mi eget libero maximus, ut efficitur elit consectetur. Ut in leo in libero interdum aliquet et at ligula. Nam eleifend, massa non imperdiet rhoncus, nibh risus commodo urna, ac feugiat nulla ante sit amet eros. Vestibulum suscipit scelerisque sem, a hendrerit ante placerat nec. Sed mauris lectus, aliquam nec placerat at, sodales eu urna.
         </div>
 
         <div id="nextBox" class="nxb-container">
-            <button id="blink_text" onclick="NBoff()">▶</button>
+            <button id="nextbtn" id="blink_text" onclick="NBoff()">▶</button>
         </div>
 
         <div id="choiceBox" class="cb-container">
-            <button>You know what ? I think I'll peace out.</button>
-            <button>What brought you to the ship?</button>
-            <button>Is it difficult to be away from your loved ones?</button>
-            <button>Mrs anthropologist, I think you look very lovely.</button>
+            <button id="b1">You know what ? I think I'll peace out.</button>
+            <button id="b2">What brought you to the ship?</button>
+            <button id="b3">Is it difficult to be away from your loved ones?</button>
+            <button id="b4">Mrs anthropologist, I think you look very lovely.</button>
         </div>
     </div>
 </body>
