@@ -5,13 +5,14 @@ var nextBox
 var nextButton
 var lbtext
 var lbname
+var imgSprite
+var imgBackground
 
 
 //#classes
 class character {
-    constructor(name, sprite, audio) {
-        this.sprite = "/sprites/placeholder.png";
-        this.audio =  "/sprites/sfx-meow.wav";
+    constructor(name, sprite) {
+        this.sprite = sprite;
         this.name = name;
     }
 }
@@ -23,6 +24,12 @@ class dialog {
     }
 }
 
+class Background {
+    constructor (img) {
+        this.img = img
+    }
+}
+
 //#functions 
 window.onload = () => {
     startScreen = document.getElementById("startScreen");
@@ -31,6 +38,7 @@ window.onload = () => {
     nextBox = document.getElementById("nextBox");
     lbtext = document.getElementById("lbtext");
     lbname = document.getElementById("lbname");
+    imgSprite = document.getElementById("imgSprite");
 
     startScreen.style.display = "block";
     gameScreen.style.display = "none";
@@ -49,19 +57,40 @@ function NBoff() {
     choiceBox.style.display = "block";
 }
 
-var LittleSnake = new character("Little Snake");
+var LittleSnake = new character("Little Snake", getSpriteURL("Littlesnake"));
+var Ricky = new character("Ricky the Frog", getSpriteURL("Rickythefrog"));
 
 var Scene = [
-    new dialog(LittleSnake, "hellow world UwU"),
-    new dialog(LittleSnake, "Ssssssssssssssssssssssssssss"),
-]
+    new dialog(LittleSnake, "What a wonderful day! My house is warm and the flowers are always ssso lovely. The magical foresst is sssstrong today. A quiet sssstrength exudes from Her trees."),
+    new dialog(LittleSnake, "But I have a sssmall problem I have to ssssolve! Indeed, my ssscales are losing sssoftnesss, I wonder where I could find some ointment for them..."),
+    new dialog(LittleSnake, "Let'sss just take a sssmall walk in the foressst. I am sure the sssolution will come by itssself."),
+];
 
 var currentdialog = 0;
 
-function Next() { 
+function Next() {
     var dialog = Scene[currentdialog];
     lbtext.innerHTML = dialog.text;
     lbname.innerHTML = dialog.character.name;
     currentdialog++;
+    showSprite(dialog);
 }
 
+function showSprite(dialog) {
+    img = dialog.character.sprite;
+    imgSprite.src = img;
+    debugger
+}
+
+function getSpriteURL(path) {
+    return (new URL("sprites/" + path + ".png", document.location)).href;
+}
+
+function getBackgroundURL(path) {
+    return (new URL("backgrounds/" + path + ".png", document.location)).href;
+}
+
+function showBackground(img) {
+    img = getBackgroundURL(img);
+    imgBackground.src = img;
+}
