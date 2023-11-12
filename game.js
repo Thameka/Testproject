@@ -8,7 +8,6 @@ var lbname
 var imgSprite
 var imgBackground
 
-
 //#classes
 class character {
     constructor(name, sprite) {
@@ -58,6 +57,7 @@ window.onload = () => {
     lbname = document.getElementById("lbname");
     imgSprite = document.getElementById("imgSprite");
     imgBackground = document.getElementById("imgBackground");
+    nextButton = document.getElementById("nextbtn");
 
     startScreen.style.display = "block";
     gameScreen.style.display = "none";
@@ -78,6 +78,14 @@ function NBoff() {
 
 var LittleSnake = new character("Little Snake", getSpriteURL("Littlesnake"));
 var Ricky = new character("Ricky", getSpriteURL("Rickythefrog"));
+
+var Scene2 = new Scene([
+
+    new Conv([
+        new Background(getBackgroundURL("redforest")),
+        new dialog(Ricky, "Oops! we went back on that path and exited the pond."),
+    ]),
+]);
 
 var Scene1 = new Scene([
 
@@ -103,34 +111,39 @@ var Scene1 = new Scene([
     ]),
 ]);
 
-var Scene2 = new Scene([
-
-    new Conv([
-        new Background(getBackgroundURL("redforest")),
-        new dialog(Ricky, "Oops! we went back on that path and exited the pond."),
-    ]),
-]);
-
 var currentdialog = 0;
 var currentScene = Scene1;
 var currentConv = 0;
 
 
-function Next() {
-    var event = currentScene[currentConv[currentdialog]];
-    var conversation = currentScene[currentConv];
-    currentdialog++;
+async function Next() {
+    var event = currentScene.conversation[currentConv].events[currentdialog];
+    var conversation = currentScene.conversation[currentConv].events;
 
     if (currentdialog == conversation.length) {
         currentConv++;
-        Next()
+        currentdialog = 0;
+        Next();
     }
 
+    currentdialog++;
+
+   
     if (event instanceof dialog) {
-        lbtext.innerHTML = event.text;
         lbname.innerHTML = event.character.name;
         showSprite(event);
+        var currentText = "" 
+        nextButton.disabled = true;
+        for(var i = 0; i < event.text.length; i++) {
+            debugger;
+            var currentCharacter = event.text[i];
+            currentText = currentText + currentCharacter;
+            lbtext.innerHTML = currentText;
+            await new Promise(r => setTimeout(r, 40));
+            }
+            nextButton.disabled = false;
     }
+   
 
     if (event instanceof Background) {
         showBackground(event);
@@ -144,7 +157,6 @@ function Next() {
 }
 
 function showSprite(event) {
-    debugger;
     img = event.character.sprite;
     imgSprite.src = img;
 }
