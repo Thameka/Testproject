@@ -2,12 +2,12 @@
     background-color: #2b805a;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans');
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans'); 
 
 body{
 	/*Basic Font Styling*/
   
-  font-family: 'Pixelify Sans', sans-serif;
+  font-family: 'Courier Prime', monospace;
 	font-size:30px;
 	color:whitesmoke;
     overflow:hidden;
