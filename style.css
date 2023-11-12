@@ -19,12 +19,12 @@ body{
 /*Start screen options styling */   
 #optionsContainer {
     background-color:rgb(30, 50, 50);
-    height: 40%;
-    width: 90%;     
+    height: 38%;
+    width: 40%;     
     margin:auto;
     position: absolute; 
-    top: 40%; 
-    left: 2%;  
+    top: 37%; 
+    margin-left: 1vw;  
     padding: 10px 10px;
     border: 3px solid rgb(18, 31, 31);
 }
@@ -43,7 +43,6 @@ body{
     height:auto;
     margin:3%;
     text-align: center;
-    font-size: 0.8em;
   }
 
 /*Start screen items END*/
@@ -88,15 +87,15 @@ padding:5px;
 
 .nb-container {
     background-color: rgb(30, 50, 50);
-    border: 5px solid rgb(18, 31, 31);
+    border: 0.5vw solid rgb(18, 31, 31);
     border-radius: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow:hidden;
     position:absolute;
-    bottom: 40%;
-    font-size: 1em;
+    bottom: 41%;
+    font-size: 2vw;
     left: 2%;
 }
 
@@ -115,31 +114,34 @@ z-index:-4;
 
 /*static background box styling*/
 #mainBox {
-    background-color: rgb(18, 31, 31);
-    width:98vw;
-    height:40vh;
-    position:absolute;
-    bottom:1%;
-    left:1%;
-    z-index: -3;
-    color: rgb(18, 31, 31);
-    border-radius: 5px;
+  display: flex;
+  justify-content:left;
+  flex-direction: row;
+  background-color: rgb(18, 31, 31);
+  width:98vw;
+  height:40vh;
+  position:absolute;
+  bottom:2%;
+  left:1%;
+  color: rgb(18, 31, 31);
+  border-radius: 5px;
 }
 
 /*textbox styling*/
 #textBox {
     background-color: rgb(30, 50, 50);
-    border: 3px solid rgb(18, 31, 31);
-    width:55%;
-    height:31.5%;
-    margin:auto;
+    margin:0.7vw;
     position:absolute;
-    bottom:2%;
-    left:2%;
     padding: 15px 10px;
+    width: 65%;
+    height: auto;
+    top:1%;
+    bottom: 1%;
     text-align: justify;
-    font-size: 0.7em;
+    font-size: 1.6vw;
+    color:whitesmoke;
     overflow: auto;
+    border-radius: 5px;
 }
 
 /*button styling*/
@@ -158,14 +160,12 @@ button:hover {
 
 /*Next box styling*/
 #nextBox {
-    border: 3px solid rgb(18, 31, 31);
     width:15%;
-    height:35%;
-    margin:auto;
+    height: auto;
+    top:1%;
+    bottom: 1%;
+    margin:1vw;
     position:absolute;
-    bottom:2%;
-    left:60%;
-    padding: 5px 5px;
 }
 
 .nxb-container {
@@ -175,6 +175,7 @@ button:hover {
     align-items: center;
     justify-content: center;
     overflow:hidden;
+    left:68%;
 }
 
 .nxb-container > button {
@@ -183,24 +184,25 @@ button:hover {
         height:50%;
         width:50%;
         margin:auto;
-        font-size: 5em;
+        font-size: 15vw;
       }
 
 .nxb-container > button:hover {
     background-color: rgb(18, 31, 31);
+    color:lightgray;
    }
    
 
 /*Choice box styling*/
 #choiceBox {
     background-color: rgb(30, 50, 50);
-    border: 3px solid rgb(18, 31, 31);
-    width:37%;
-    height:35%;
-    margin:auto;
+    width:32%;
+    height: auto;
+    top:1%;
+    bottom: 1%;
+    margin:1vw;
     position:absolute;
-    bottom:2%;
-    left:60%;
+    left:68%;
     padding: 5px 5px;
 }
 
@@ -241,8 +243,8 @@ input[type=range]::-webkit-slider-runnable-track {
 input[type=range]::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance:none;
-    width: 5px;
-    height: inherit;
+    width: 2vw;
+    height: 2vh;
     border-radius: 0px;
     background-color:rgb(18, 31, 31);
   }
@@ -262,19 +264,3 @@ input[type=range]::-webkit-slider-thumb {
     transition-duration: 0.4s;
   }
 
-  /*Blinking effect (thank you google)*/
-  #blink_text{	
-    animation-name:blink;
-    animation-duration:7s;
-    animation-timing-function:ease-in-out;
-    animation-iteration-count:Infinite;
-    }
-  
-  @keyframes blink{
-    0%{color:rgb(30, 50, 50);}
-    25%{color:rgb(170, 203, 203);}
-    50%{color:rgb(170, 203, 203);}
-    75%{color:rgb(170, 203, 203);}
-    100%{color:rgb(30, 50, 50);}
-  }
-/*Webkit customs + animations END*/
