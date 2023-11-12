@@ -2,9 +2,12 @@
     background-color: #2b805a;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans');
+
 body{
 	/*Basic Font Styling*/
-	font-family: 'Courier Prime', monospace;
+  
+  font-family: 'Pixelify Sans', sans-serif;
 	font-size:30px;
 	color:whitesmoke;
     overflow:hidden;
@@ -170,7 +173,7 @@ button:hover {
 }
 
 .nxb-container {
-    background-color: ##1a3b34;
+    background-color: #1a3b34;
     display: flex;
     flex-direction: column;
     align-items: center;
