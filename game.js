@@ -58,12 +58,17 @@ function NBoff() {
 }
 
 var LittleSnake = new character("Little Snake", getSpriteURL("Littlesnake"));
-var Ricky = new character("Ricky the Frog", getSpriteURL("Rickythefrog"));
+var Ricky = new character("Ricky", getSpriteURL("Rickythefrog"));
 
 var Scene = [
     new dialog(LittleSnake, "What a wonderful day! My house is warm and the flowers are always ssso lovely. The magical foresst is sssstrong today. A quiet sssstrength exudes from Her trees."),
     new dialog(LittleSnake, "But I have a sssmall problem I have to ssssolve! Indeed, my ssscales are losing sssoftnesss, I wonder where I could find some ointment for them..."),
     new dialog(LittleSnake, "Let'sss just take a sssmall walk in the foressst. I am sure the sssolution will come by itssself."),
+    new dialog(Ricky, "Oh hi Little Snake, what are you doing here?"),
+    new dialog(LittleSnake, "Ricky! What a good sssurprise! I was going to the foresst for a little walk. Do you want to come with me?"),
+    new dialog(Ricky, "Of course ! You know I love walks in the forest. I was myself heading to the pond!"),
+    new dialog (LittleSnake, "The pond! What a grandiose idea. Let'ss go to the pond!"),
+    new dialog (LittleSnake, "<i>(Maybe I will find some ointment there...)(</i>")
 ];
 
 var currentdialog = 0;
