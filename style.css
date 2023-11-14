@@ -2,8 +2,6 @@
     background-color: #2b805a;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans'); 
-
 body{
 	/*Basic Font Styling*/
   
@@ -84,8 +82,8 @@ z-index:-2;
 
 /*namebox styling*/
 #nameBox {
-height:8%;
-width:15%;
+height:5%;
+width:18%;
 padding:5px;
 }
 
@@ -94,13 +92,10 @@ padding:5px;
     border: 0.5vw solid #1a3b34;
     border-radius: 5px;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow:hidden;
     position:absolute;
-    bottom: 41%;
-    font-size: 2vw;
+    bottom: 43%;
     left: 2%;
+    font-size: 2vw;
 }
 
 /*background styling*/

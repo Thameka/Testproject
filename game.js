@@ -95,7 +95,7 @@ hiss.play();
 
 //#characters
 var LittleSnake = new character("Little Snake", getSpriteURL("Littlesnake"), new Audio(getAudioURL("Littlesnake")));
-var Ricky = new character("Ricky", getSpriteURL("Rickythefrog"), new Audio(getAudioURL("Ricky")));
+var Ricky = new character("Ricky the Frog", getSpriteURL("Rickythefrog"), new Audio(getAudioURL("Ricky")));
 var Narrator = new character("", getSpriteURL("Narrator"), new Audio(getAudioURL("Narrator")));
 //#characters END
 
@@ -103,8 +103,10 @@ var Narrator = new character("", getSpriteURL("Narrator"), new Audio(getAudioURL
 var Scene2 = new Scene([
 
     new Conv([
-        new Background(getBackgroundURL("redforest")),
-        new dialog(Ricky, "Oops! we went back on that path and exited the pond."),
+        new Background(getBackgroundURL("forest")),
+        new dialog(LittleSnake, "But I don't sssseee anyone..."),
+        new dialog(Ricky, "Have you tried looking up? Ribbit."), 
+        new dialog(LittleSnake, "Oh! Hi!"),
     ]),
 ]);
 //Scene 2 END
@@ -113,25 +115,34 @@ var Scene2 = new Scene([
 var Scene1 = new Scene([
 
     new Conv([
-        new Background(getBackgroundURL("foresthouse")),
-        new dialog(Narrator, "Just outside of the magical forest, in the middle of a poppy field, lies a modest yet heartwarming hut-- it is Little Snake's home."),
-        new dialog (Narrator, "Speaking of which, on this very sunny, quiet day, Little Snake seems happy yet somewhat troubled..."),
-        new dialog(LittleSnake, "What a wonderful day! My house is warm and the flowers are always ssso lovely. The magical foresst is sssstrong today. A quiet sssstrength exudes from Her trees."),
-        new dialog(LittleSnake, "But I have a sssmall problem I have to ssssolve! Indeed, my ssscales are losing sssoftnesss, I wonder where I could find some ointment for them..."),
-        new dialog(LittleSnake, "Let'sss just take a sssmall walk in the foressst. I am sure the sssolution will come by itssself."),
-        new dialog(Ricky, "Oh hi Little Snake, what are you doing here?"),
-        new dialog(LittleSnake, "Ricky! What a good sssurprise! I was going to the foresst for a little walk. Do you want to come with me?"),
-        new dialog(Ricky, "Of course ! You know I love walks in the forest. I was myself heading to the pond!"),
-        new dialog(LittleSnake, "The pond! What a grandiose idea. Let'ss go to the pond!"),
-        new dialog(LittleSnake, "<i>(Maybe I will find some ointment there...)</i>"),
-        new Background(getBackgroundURL("redforest")),
-        new dialog(LittleSnake, "Wow! The foresst is very pretty! What happened?"),
+        new Background(getBackgroundURL("housefield")),
+        new dialog(Narrator, "Somewhere in a place invisible to humans, laid a powerful magical forest. She was alive, and always oh-so-surprising-- sometimes happy, sometimes angry, sometimes sick. But that day, as the sun shone on the Valley, the forest exuded strength and joy."),
+        new dialog(Narrator, "Just outside of the forest, in the middle of a poppy field, a modest yet heartwarming hut could be seen : it was Little Snake's home."),
+        new dialog(Narrator, "Little Snake had been peacefully living in this hut for as long as she could remember. Free of any serious worries, her preoccupations were somewhat limited to her daily activities... and to the maintenance of her extraordinary soft, adorable scales."),
+        new dialog(Narrator, "Speaking of which, on this very sunny day, Little Snake seemed... somewhat troubled."),
+        new dialog(LittleSnake, "What a wonderful day! My house is warm and the flowers are always ssso lovely. The magical foresst is sssstrong today. However, I find myssself a wee bit worried..."),
+        new dialog(LittleSnake, "Indeed, my ssscales are losing sssoftnesss! To the touch, they are not reminisssscent of the Bear's fur anymore. They're more like... The mossssss on the walls of my hut."),
+        new dialog(LittleSnake, "What could I do... Ah! Woe is me."),
+        new dialog(Ricky, "Oh hello, Little Snake! Ribbit."),
+        new dialog(LittleSnake, "Ricky! What a good sssurprise! The Valley is ever so beautiful today, but I have a ssssmall problem..."),
+        new dialog(Ricky, "A small problem? Oh no! What happened?"),
+        new dialog(LittleSnake, "I woke up today with my ssssscales as coarsssse as mossssss!"),
+        new dialog(Ricky, "Is that true?"),
+        new dialog(LittleSnake, "Yessssss. Check by yoursself..."),
+        new dialog(Narrator, "Little Snake slithered shyly towards her friend, who stroke her scales of his palmy hand. He gasped with shock."),
+        new dialog(Ricky, "Little Snake! You are right! Yet, you have the reputation of having the softest scales of all the Valley. We have to find a solution! I know who can help."),
+        new dialog(LittleSnake, "Really? Who might that be?"),
+        new dialog(Ricky, "Well, the Bear, of course! Ribbit."),
+        new dialog(LittleSnake, "But of course! How didn't I think of that before! Let's go meet the Bear!"),
+        new dialog(Ricky, "Let's go! I know he lives in the Forest, and She is in a good mood today, so I don't think we will have any problems!"),
     ]),
 
     new Conv([
-        new Background(getBackgroundURL("forestpond")),
-        new dialog(Ricky, "There we go! My favourite pond."),
-        new dialog(LittleSnake, "Ricky! I didn't know thissss pond even exissssted!"),
+        new Background(getBackgroundURL("forest")),
+        new dialog(Narrator, "And just like that, our two friends made their way to the magical forest. But as they were strolling along its paths, Ricky the Frog remembered he lacked a crucial information."),
+        new dialog(Ricky, "Now let's see... Where does he live, actually?"),
+        new dialog(LittleSnake, "Wasn't it in a cave, or sssssomething? Can't we asssssk sssssomeone?"),
+        new dialog(Ricky, "It's a good idea! Let's find someone to ask."),
         new ChangeScene(Scene2),
     ]),
 ]);
@@ -148,8 +159,10 @@ async function Next() {
     var conversation = currentScene.conversation[currentConv].events;
 
     if (currentdialog == conversation.length) {
+        debugger;
         currentConv++;
-        currentdialog = 0;
+        currentdialog = -1;
+        showBackground(event)
         Next();
     }
 
