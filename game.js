@@ -7,12 +7,16 @@ var lbtext
 var lbname
 var imgSprite
 var imgBackground
+var Namebox
+var volume 
+var textSpeed
 
 //#classes
 class character {
-    constructor(name, sprite) {
+    constructor(name, sprite, voice) {
         this.sprite = sprite;
         this.name = name;
+        this.voice = voice;
     }
 }
 
@@ -45,9 +49,9 @@ class ChangeScene {
     constructor(scene) {
         this.scene = scene;
     }
-
 }
-//#functions 
+
+//#functions (1)
 window.onload = () => {
     startScreen = document.getElementById("startScreen");
     gameScreen = document.getElementById("gameScreen");
@@ -58,6 +62,8 @@ window.onload = () => {
     imgSprite = document.getElementById("imgSprite");
     imgBackground = document.getElementById("imgBackground");
     nextButton = document.getElementById("nextbtn");
+    Namebox = document.getElementById("nameBox");
+    textSpeed = document.getElementById("textSpeed");
 
     startScreen.style.display = "block";
     gameScreen.style.display = "none";
@@ -68,17 +74,32 @@ window.onload = () => {
 function startGame() {
     startScreen.style.display = "none";
     gameScreen.style.display = "block";
+    volume = document.getElementById('volume').value;
     Next();
 }
 
-function NBoff() {
-    nextBox.style.display = "none";
-    choiceBox.style.display = "block";
+function Nameboxoff() {
+    Namebox.style.display = "none";
 }
 
-var LittleSnake = new character("Little Snake", getSpriteURL("Littlesnake"));
-var Ricky = new character("Ricky", getSpriteURL("Rickythefrog"));
+function NameboxOn() {
+    Namebox.style.display = "block";
+}
 
+function playHiss() {
+var hiss = new Audio(getAudioURL("ssss")); 
+hiss.play();
+}
+
+//#functions (1) END
+
+//#characters
+var LittleSnake = new character("Little Snake", getSpriteURL("Littlesnake"), new Audio(getAudioURL("Littlesnake")));
+var Ricky = new character("Ricky", getSpriteURL("Rickythefrog"), new Audio(getAudioURL("Ricky")));
+var Narrator = new character("", getSpriteURL("Narrator"), new Audio(getAudioURL("Narrator")));
+//#characters END
+
+//Scene 2
 var Scene2 = new Scene([
 
     new Conv([
@@ -86,11 +107,15 @@ var Scene2 = new Scene([
         new dialog(Ricky, "Oops! we went back on that path and exited the pond."),
     ]),
 ]);
+//Scene 2 END
 
+//Scene 1
 var Scene1 = new Scene([
 
     new Conv([
         new Background(getBackgroundURL("foresthouse")),
+        new dialog(Narrator, "Just outside of the magical forest, in the middle of a poppy field, lies a modest yet heartwarming hut-- it is Little Snake's home."),
+        new dialog (Narrator, "Speaking of which, on this very sunny, quiet day, Little Snake seems happy yet somewhat troubled..."),
         new dialog(LittleSnake, "What a wonderful day! My house is warm and the flowers are always ssso lovely. The magical foresst is sssstrong today. A quiet sssstrength exudes from Her trees."),
         new dialog(LittleSnake, "But I have a sssmall problem I have to ssssolve! Indeed, my ssscales are losing sssoftnesss, I wonder where I could find some ointment for them..."),
         new dialog(LittleSnake, "Let'sss just take a sssmall walk in the foressst. I am sure the sssolution will come by itssself."),
@@ -110,13 +135,15 @@ var Scene1 = new Scene([
         new ChangeScene(Scene2),
     ]),
 ]);
+//Scene 1 END
 
+//#functions (2)
 var currentdialog = 0;
 var currentScene = Scene1;
 var currentConv = 0;
 
-
 async function Next() {
+    NameboxOn();
     var event = currentScene.conversation[currentConv].events[currentdialog];
     var conversation = currentScene.conversation[currentConv].events;
 
@@ -128,22 +155,24 @@ async function Next() {
 
     currentdialog++;
 
-   
     if (event instanceof dialog) {
         lbname.innerHTML = event.character.name;
+        if (event.character.name == "") {
+Nameboxoff();
+        }
         showSprite(event);
         var currentText = "" 
         nextButton.disabled = true;
         for(var i = 0; i < event.text.length; i++) {
-            debugger;
             var currentCharacter = event.text[i];
+            event.character.voice.volume = volume/10;
+            event.character.voice.play();
             currentText = currentText + currentCharacter;
             lbtext.innerHTML = currentText;
-            await new Promise(r => setTimeout(r, 40));
+            await new Promise(r => setTimeout(r, 30-textSpeed.value));
             }
             nextButton.disabled = false;
     }
-   
 
     if (event instanceof Background) {
         showBackground(event);
@@ -153,7 +182,6 @@ async function Next() {
     if (event instanceof ChangeScene) {
         changeScene(event.scene);
     }
-
 }
 
 function showSprite(event) {
@@ -164,6 +192,10 @@ function showSprite(event) {
 function getSpriteURL(path) {
     return (new URL("sprites/" + path + ".png", document.location)).href;
 }
+
+function getAudioURL(path) {
+    return (new URL("sounds/" + path + ".wav", document.location)).href;
+  }
 
 function getBackgroundURL(path) {
     return (new URL("backgrounds/" + path + ".png", document.location)).href;
@@ -185,3 +217,4 @@ function changeConv(conv) {
     currentConv = conv;
     currentdialog = 0;
 }
+//#functions (2) END

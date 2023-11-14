@@ -16,11 +16,11 @@
                 style="display:flex; flex-direction: row; justify-content: space-evenly; position: absolute; top: 22%; margin-left: 1vw; height:10%; width:44%">
                 <button style="font-size: 2vw; width:32%; " onclick="startGame()">Start game</button>
                 <button style="font-size: 2vw; width:32%; ">Load game</button>
-                <button style="font-size: 2vw; width:32%;">Ssssss!</button>
+                <button id="hissbtn" style="font-size: 2vw; width:32%" onclick="playHiss()">Ssssss!</button>
             </div>
             <div id="optionsContainer" class="flex-container1">
                 <div style="font-size: 2vw;">Text Speed</div>
-                <input class="custom-slider" id="textSpeed" type="range" min="0" max="30" step="1" value="15"
+                <input class="custom-slider" id="textSpeed" type="range" min="0" max="30" step="1" value="15" 
                     style="width: 70%; margin: 3%" />
                 <div style="font-size: 2vw;">Volume</div>
                 <input class="custom-slider" id="volume" type="range" min="0" max="10" value="10"
