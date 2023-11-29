@@ -63,8 +63,8 @@ padding:0px;
 margin:0px;
 border:none;
 position:absolute;
-bottom:30%;
-left:18%;
+bottom:20%;
+left:26%;
 z-index:-2;
 }
 
@@ -93,7 +93,7 @@ padding:5px;
     border-radius: 5px;
     display: flex;
     position:absolute;
-    bottom: 43%;
+    bottom: 36.5%;
     left: 2%;
     font-size: 2vw;
 }
@@ -118,7 +118,7 @@ z-index:-4;
   flex-direction: row;
   background-color: #1a3b34;
   width:98vw;
-  height:40vh;
+  height:34vh;
   position:absolute;
   bottom:2%;
   left:1%;
@@ -183,7 +183,7 @@ button:hover {
         height:50%;
         width:50%;
         margin:auto;
-        font-size: 15vw;
+        font-size: 12vw;
       }
 
 .nxb-container > button:hover {
@@ -204,7 +204,7 @@ button:hover {
 }
 
 .cb-container {
-    background-color: rgb(22, 39, 39);
+    background-color: #216245;
     display: flex;
     flex-direction: column;
     align-items: flex-start;

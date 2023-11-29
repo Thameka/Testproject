@@ -132,6 +132,29 @@ var Timmy = new character("Timmy the Turtle", getSpriteURL("Timmy"), new Audio(g
 var BigBear = new character("Big Bear", getSpriteURL("Bear"), new Audio(getAudioURL("Bear")));
 //#characters END
 
+// Choices Cave//
+//Scene Cave//
+var SceneCave = new Scene([
+    new Conv([
+        new Background(getBackgroundURL("bearcave")),
+        new dialog(Narrator, "Little Snake and Ricky the Frog decided to turn left, following Gomez's instructions. They slithered and jumped along a quaint little forest path for quite a long time, before finally finding themselves in front of a large stone cave."),
+        
+    ]),
+]);
+//Scene Cave END//
+
+// Choices Shop//
+//Scene Shop//
+var SceneShop = new Scene([
+    new Conv([
+        new Background(getBackgroundURL("shop")),
+        new dialog(Narrator, "After some careful deliberation, Little Snake and Ricky the Frog decided to turn right. After some time walking in the forest, they arrived at a clearing full with small stands. It looked like a little market! But, curiously enough, only one person seemed to take care of all the stands."),
+        
+    ]),
+
+]);
+//Scene Shop END//
+
 //Choices Forest//
 var bearwho = new Choice(function(){changeConv(2)}, "Who is the Bear, actually?");
 var bearlotion = new Choice(function(){changeConv(3)}, "What can the Bear do for my softness problem?");
@@ -139,6 +162,9 @@ var bearwhere = new Choice(function(){changeConv(4)}, "Where can we find the Bea
 var thanks = new Choice(function(){changeConv(5)}, "I can't think of anything elssssse...");
 var repeatgomez = new Choice(function(){changeConv(1)}, "Actually, can you repeat sssomething for me?");
 var walkpath = new Choice(function(){changeConv(6)}, "I think we'll get going! Bye!");
+var backgomez = new Choice(function(){changeConv(7)}, "Let's look for Gomez again.");
+var leftcave = new Choice(function(){changeScene(SceneCave)}, "Let's turn left!");
+var rightshop = new Choice(function(){changeScene(SceneShop)}, "Let's turn right!");
 
 //Scene Forest
 var SceneForest = new Scene([
@@ -243,7 +269,14 @@ var SceneForest = new Scene([
         new dialog(Narrator, "Soon, the path forked. It was exactly as Gomez had said!"),
         new dialog(LittleSnake, "Ricky! Should we go left or right?"),
         new dialog(Ricky, "Little Snake, I have very bad memory. I'm leaving that choice up to you. Ribbit."),
-    ])
+        new dialog(LittleSnake, "Where should we go..."),
+        new ChoiceArray([backgomez, rightshop, leftcave]),
+    ]),
+
+    new Conv([
+        new dialog(Gomez, "You're back! What can I help you with?"),
+        new ChoiceArray([bearwho, bearwhere, bearlotion, walkpath]),
+    ]),
 
 
 ]);
@@ -285,12 +318,10 @@ var currentScene = Scene1;
 var currentConv = 0;
 
 async function Next() {
-    NameboxOn();
     var event = currentScene.conversation[currentConv].events[currentdialog];
     var conversation = currentScene.conversation[currentConv].events;
 
     if (currentdialog == conversation.length) {
-        debugger;
         currentConv++;
         currentdialog = -1;
         showBackground(event)
@@ -301,21 +332,35 @@ async function Next() {
     if (event instanceof ChoiceArray) {
         choiceBox.style.display = "block";
         nextBox.style.display = "none";
+
         for (var i = 0; i < event.choices.length; i++) {
             var currentChoice = event.choices[i];
             var currentButton = choicebuttons[i];
-            currentButton.style.display = "block";
             currentButton.innerHTML = currentChoice.text;
-            currentButton.onclick = currentChoice.action;
-        }
+            currentButton.onclick = currentChoice.action; 
+            currentButton.style.display = "block";
+        } 
     }
 
     if (event instanceof dialog) {
         choiceBox.style.display = "none";
         nextBox.style.display = "block";
+        //buttons display
+        b1.innerHTML = "";
+        b2.innerHTML = "";
+        b3.innerHTML = "";
+        b4.innerHTML = "";
+        b1.style.display = "none";
+        b2.style.display = "none";
+        b3.style.display = "none";
+        b4.style.display = "none";
+        //buttons display
         lbname.innerHTML = event.character.name;
         if (event.character.name == "") {
             Nameboxoff();
+        }
+        else {
+            NameboxOn();
         }
         showSprite(event);
         var currentText = ""
